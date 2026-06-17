@@ -11,8 +11,10 @@ const FREE_SHIPPING = BRAND.freeShippingFrom;
 
 export default function CartDrawer() {
   const { items, isOpen, close, remove, setQty, subtotal, count } = useCart();
+  // frete grátis em todo EUA quando freeShippingFrom = 0
+  const freeAllUS = FREE_SHIPPING <= 0;
   const missing = Math.max(0, FREE_SHIPPING - subtotal);
-  const progress = Math.min(100, (subtotal / FREE_SHIPPING) * 100);
+  const progress = FREE_SHIPPING > 0 ? Math.min(100, (subtotal / FREE_SHIPPING) * 100) : 100;
 
   return (
     <>
@@ -47,18 +49,26 @@ export default function CartDrawer() {
           </div>
         ) : (
           <>
-            {/* free shipping bar */}
+            {/* free shipping note */}
             <div className="border-b border-line px-5 py-3">
-              <p className="text-xs text-ink">
-                {missing > 0 ? (
-                  <>You&apos;re <strong>{formatPrice(missing)}</strong> away from free shipping</>
-                ) : (
-                  <>🎉 You unlocked <strong>free shipping</strong></>
-                )}
-              </p>
-              <div className="mt-2 h-1 w-full bg-line">
-                <div className="h-full bg-ink transition-all" style={{ width: `${progress}%` }} />
-              </div>
+              {freeAllUS ? (
+                <p className="text-center text-xs font-medium uppercase tracking-widest text-ink">
+                  🇺🇸 Free shipping across the US
+                </p>
+              ) : (
+                <>
+                  <p className="text-xs text-ink">
+                    {missing > 0 ? (
+                      <>You&apos;re <strong>{formatPrice(missing)}</strong> away from free shipping</>
+                    ) : (
+                      <>🎉 You unlocked <strong>free shipping</strong></>
+                    )}
+                  </p>
+                  <div className="mt-2 h-1 w-full bg-line">
+                    <div className="h-full bg-ink transition-all" style={{ width: `${progress}%` }} />
+                  </div>
+                </>
+              )}
             </div>
 
             <div className="flex-1 overflow-y-auto px-5">

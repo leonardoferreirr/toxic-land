@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { Product, formatPrice } from "@/lib/products";
-import { BRAND } from "@/lib/brand";
 import ProductImage from "./ProductImage";
 import { useCart } from "./cart/CartContext";
 
@@ -14,7 +13,6 @@ export default function ProductDetail({ product }: { product: Product }) {
   const [activeImg, setActiveImg] = useState(0);
 
   const onSale = product.compareAtPrice && product.compareAtPrice > product.price;
-  const freeShip = formatPrice(BRAND.freeShippingFrom);
 
   const handleAdd = () => {
     if (!size) {
@@ -70,7 +68,7 @@ export default function ProductDetail({ product }: { product: Product }) {
           <span className="text-2xl font-semibold">{formatPrice(product.price)}</span>
           {onSale && <span className="text-base text-muted line-through">{formatPrice(product.compareAtPrice!)}</span>}
         </div>
-        <p className="mt-1 text-sm text-muted">Free shipping on orders over {freeShip}</p>
+        <p className="mt-1 text-sm text-muted">Free shipping across the US</p>
 
         {/* size */}
         <div className="mt-8">
@@ -102,7 +100,7 @@ export default function ProductDetail({ product }: { product: Product }) {
           Add to bag
         </button>
         <div className="mt-3 grid grid-cols-2 gap-3 text-center text-[11px] uppercase tracking-widest text-muted">
-          <div className="border border-line py-2">Free shipping over {freeShip}</div>
+          <div className="border border-line py-2">Free US shipping</div>
           <div className="border border-line py-2">30-day returns</div>
         </div>
 
