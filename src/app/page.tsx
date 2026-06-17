@@ -79,9 +79,12 @@ export default function Home() {
             </div>
             <Link href={`/collections/${c.slug}`} className="uline shrink-0 text-sm text-ink hover:text-accent">View all</Link>
           </div>
-          <div className="mt-8 grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-3">
+          {/* mobile: carrossel horizontal estilo Netflix (peek do próximo) ; md+: grid de 3 */}
+          <div className="no-scrollbar -mx-4 mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 md:mx-0 md:grid md:grid-cols-3 md:gap-x-4 md:gap-y-10 md:overflow-visible md:px-0">
             {productsInCollection(c.slug).map((p) => (
-              <ProductCard key={p.id} product={p} />
+              <div key={p.id} className="w-[78%] shrink-0 snap-start sm:w-[46%] md:w-auto md:shrink">
+                <ProductCard product={p} />
+              </div>
             ))}
           </div>
         </section>
