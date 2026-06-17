@@ -7,9 +7,9 @@ import Link from "next/link";
 // 1 banner por estampa. Trocar os arquivos em /public/banners pelos finais do Higgsfield.
 // Dimensões alvo: desktop 1920×1080 (16:9), mobile 1080×1350 (4:5).
 const BANNERS = [
-  { desktop: "/banners/hero-red-flags-desktop.jpg", mobile: "/banners/hero-red-flags-mobile.jpg", href: "/collections/red-flags", label: "Red Flags" },
-  { desktop: "/banners/hero-bummer-king-desktop.jpg", mobile: "/banners/hero-bummer-king-mobile.jpg", href: "/collections/bummer-king", label: "Bummer King" },
-  { desktop: "/banners/hero-mcdumplings-desktop.jpg", mobile: "/banners/hero-mcdumplings-mobile.jpg", href: "/collections/mcdumplings", label: "McDumplings" },
+  { desktop: "/banners/hero-red-flags-desktop.jpg", mobile: "/banners/hero-red-flags-mobile.jpg", href: "/collections/red-flags", label: "Red Flags", title: "You saw the signs", subtitle: "You bought a season pass anyway." },
+  { desktop: "/banners/hero-bummer-king-desktop.jpg", mobile: "/banners/hero-bummer-king-mobile.jpg", href: "/collections/bummer-king", label: "Bummer King", title: "Have it your way", subtitle: "Then watch it fall apart." },
+  { desktop: "/banners/hero-mcdumplings-desktop.jpg", mobile: "/banners/hero-mcdumplings-mobile.jpg", href: "/collections/mcdumplings", label: "McDumplings", title: "Billions heartbroken", subtitle: "Served fresh, every day." },
 ];
 
 export default function HeroBanners() {
@@ -66,6 +66,15 @@ export default function HeroBanners() {
               sizes="100vw"
               className="hidden object-cover object-center sm:block"
             />
+
+            {/* degradê + título/subtítulo (tom irônico) */}
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/5 to-transparent" />
+            <div className="pointer-events-none absolute bottom-0 left-0 max-w-[88%] p-6 pb-12 text-paper sm:p-10 sm:pb-12">
+              <h2 className="font-display text-2xl font-bold uppercase leading-[0.95] drop-shadow-sm sm:text-4xl lg:text-5xl">
+                {b.title}
+              </h2>
+              <p className="mt-2 max-w-sm text-sm text-paper/85 drop-shadow-sm sm:text-base">{b.subtitle}</p>
+            </div>
           </Link>
         ))}
 
@@ -92,7 +101,7 @@ export default function HeroBanners() {
         </button>
 
         {/* dots indicadores */}
-        <div className="absolute bottom-4 left-1/2 z-10 flex -translate-x-1/2 gap-2">
+        <div className="absolute bottom-4 right-5 z-10 flex gap-2">
           {BANNERS.map((_, idx) => (
             <button
               key={idx}
