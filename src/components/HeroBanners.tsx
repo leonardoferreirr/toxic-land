@@ -31,11 +31,11 @@ export default function HeroBanners() {
 
   return (
     <section className="relative mx-auto w-full max-w-[1920px] overflow-hidden bg-ink">
-      {/* dimensões fixas: mobile 4:5 (1080×1350), desktop 16:9 (1920×1080) */}
+      {/* mobile: 4:5 cheio (1080×1350) ; desktop: altura capada (crop centralizado da arte 16:9) pra deixar espiar a seção 2 */}
       <div
         onTouchStart={onTouchStart}
         onTouchEnd={onTouchEnd}
-        className="relative aspect-[1080/1350] w-full touch-pan-y select-none sm:aspect-[1920/1080]"
+        className="relative aspect-[1080/1350] w-full touch-pan-y select-none sm:aspect-auto sm:h-[74vh] sm:max-h-[700px] sm:min-h-[460px]"
       >
         {BANNERS.map((b, idx) => (
           <Link
