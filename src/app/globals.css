@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@theme {
+  /* Marca — preto e branco, acento = preto puro (ênfase no hover) */
+  --color-ink: #1c1c1c;
+  --color-paper: #ffffff;
+  --color-accent: #000000;
+  --color-accent-600: #000000;
+  --color-muted: #8a8a90;
+  --color-line: #e7e6e9;
+  --color-sale: #1c1c1c;
+
+  --font-display: var(--font-display), "Poppins", sans-serif;
+  --font-body: var(--font-body), "Inter", sans-serif;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #202223;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+}
+
+/* utilitários da marca */
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+.uline {
+  position: relative;
+}
+.uline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.3s ease;
+}
+.uline:hover::after {
+  width: 100%;
+}
+
+/* esconde scrollbar nos carrosséis horizontais */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
